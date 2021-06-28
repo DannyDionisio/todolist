@@ -3,4 +3,10 @@
   border: 1px solid var(--dark-purple);
   border-radius: 20px;
   padding: 20px;
+  margin: 20px 0;
+}
+
+.side-buttons {
+  display: flex;
+  justify-content: flex-end;
 }

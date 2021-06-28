@@ -8,11 +8,11 @@ const DetailedTask = () => {
     <div id="detailedTask-page">
       <div>
         <h2>Some Title</h2>
-        <TaskBox>
+        <div>
           <p>Some description comes here</p>
           <p>Date Created</p>
           <p>Date expires</p>
-        </TaskBox>
+        </div>
       </div>
       <Link to="/">Voltar</Link>
     </div>

@@ -1,5 +1,5 @@
 import { Link } from "react-router-dom";
-import { getTodos, createTodo } from "../services/api";
+import { getTodos, createTodo, deleteTodo } from "../services/api";
 import "../styles/home.css";
 
 import Button from "../components/Button";
@@ -51,6 +51,16 @@ const Home = () => {
     // TODO: não criar task que expira antes da data atual.
   };
 
+  const handleDeleteTask = (todo) => {
+    try {
+      deleteTodo(todo.name).then(() => {
+        setIsLoading(true);
+      });
+    } catch (error) {
+      alert("Error to delete Todo, try again.");
+    }
+  };
+
   return (
     <div id="page-home">
       <h1>Project Tracker</h1>
@@ -83,7 +93,7 @@ const Home = () => {
       </div>
       {taskList.map((task) => {
         return (
-          <TaskBox key={task.name}>
+          <TaskBox key={task.name} onDeleteClick={() => handleDeleteTask(task)}>
             <Link to="/detailedtask">{task.name}</Link>
           </TaskBox>
         );

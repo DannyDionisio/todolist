@@ -19,6 +19,9 @@ export function createTodo(data) {
   return api.post(``, todo);
 }
 
+export function deleteTodo(todoName) {
+  return api.delete(`/object/${USER_ID}/${todoName}`);
+}
+
 /*
-deleteTodos;
 updateTodos;*/
