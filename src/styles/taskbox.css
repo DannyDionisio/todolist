@@ -1,0 +1,6 @@
+#taskbox {
+  height: fit-content;
+  border: 1px solid var(--dark-purple);
+  border-radius: 20px;
+  padding: 20px;
+}

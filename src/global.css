@@ -1,0 +1,30 @@
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+:root {
+  --background: #e2e2e2;
+  --white: #fff;
+  --danger: #e74c3c;
+  --dark-purple: #835adf;
+}
+
+body {
+  font-family: "Open Sans", sans-serif;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+  font-size: 16px;
+  background: var(--background);
+}
+
+#page-home,
+#detailedTask-page {
+  display: flex;
+  flex-direction: column;
+  max-width: 50%;
+  margin: auto;
+  background-color: var(--white);
+  padding: 40px;
+}
