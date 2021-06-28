@@ -5,9 +5,20 @@ const api = axios.create({
   baseURL: "https://0jj5dyvv79.execute-api.eu-west-1.amazonaws.com/dev/items",
 });
 
-getTodos;
-createTodo;
-deleteTodos;
-updateTodos;
+export function getTodos() {
+  return api.get(`/${USER_ID}`);
+}
 
-export default api;
+export function createTodo(data) {
+  const todo = {
+    ...data,
+    id: USER_ID,
+    creationDate: new Date(),
+  };
+
+  return api.post(``, todo);
+}
+
+/*
+deleteTodos;
+updateTodos;*/

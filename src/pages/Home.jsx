@@ -1,5 +1,5 @@
 import { Link } from "react-router-dom";
-import api from "../services/api";
+import { getTodos, createTodo } from "../services/api";
 import "../styles/home.css";
 
 import Button from "../components/Button";
@@ -8,19 +8,43 @@ import { useEffect, useState } from "react";
 
 const Home = () => {
   const [description, setDescription] = useState("");
-  const [date, setDate] = useState("");
-  const [title, setTitle] = useState("");
-  const [id, setID] = useState("");
+  const [expireDate, setExpireDate] = useState("");
+  const [name, setName] = useState("");
+  const [taskList, setTaskList] = useState([]);
+  const [isLoading, setIsLoading] = useState(true);
 
   useEffect(() => {
-    api.get("title").then((response) => {
-      setTitle(response.data);
-    });
-  }, []);
+    if (isLoading) {
+      getTodos()
+        .then((response) => {
+          setTaskList(response.data);
+          setIsLoading(false);
+        })
+        .catch((error) => {
+          alert("Error load todos list.");
+          setIsLoading(false);
+        });
+    }
+  }, [isLoading]);
 
   const handleNewTask = (event) => {
     event.preventDefault();
-    if (title === "") {
+
+    const data = {
+      name,
+      description,
+      expireDate,
+    };
+
+    try {
+      createTodo(data).then(() => {
+        setIsLoading(true);
+      });
+    } catch (error) {
+      alert("Error to create Todo, try again.");
+    }
+
+    if (name === "") {
       return;
     }
 
@@ -38,8 +62,8 @@ const Home = () => {
           <input
             type="text"
             placeholder="Title"
-            onChange={(event) => setTitle(event.target.value)}
-            value={title}
+            onChange={(event) => setName(event.target.value)}
+            value={name}
             required
           />
           <input
@@ -50,18 +74,20 @@ const Home = () => {
           />
           <input
             type="date"
-            onChange={(event) => setDate(event.target.value)}
-            value={date}
+            onChange={(event) => setExpireDate(event.target.value)}
+            value={expireDate}
           />
 
           <Button type="submit">Add Task</Button>
         </form>
       </div>
-      <TaskBox>
-        <Link to="/detailedtask">Desenhar o layout do projeto</Link>
-      </TaskBox>
-      <TaskBox>Fazer o style</TaskBox>
-      <TaskBox>Sprints do projeto</TaskBox>
+      {taskList.map((task) => {
+        return (
+          <TaskBox key={task.name}>
+            <Link to="/detailedtask">{task.name}</Link>
+          </TaskBox>
+        );
+      })}
     </div>
   );
 };
