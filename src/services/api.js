@@ -9,6 +9,10 @@ export function getTodos() {
   return api.get(`/${USER_ID}`);
 }
 
+export function getTodoByName(name) {
+  return api.get(`/object/${USER_ID}/${name}`);
+}
+
 export function createTodo(data) {
   const todo = {
     ...data,
@@ -19,8 +23,17 @@ export function createTodo(data) {
   return api.post(``, todo);
 }
 
-export function deleteTodo(todoName) {
-  return api.delete(`/object/${USER_ID}/${todoName}`);
+export function editTodo(data) {
+  const todo = {
+    ...data,
+    id: USER_ID,
+  };
+
+  return api.post(``, todo);
+}
+
+export function deleteTodo(name) {
+  return api.delete(`/object/${USER_ID}/${name}`);
 }
 
 /*

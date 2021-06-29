@@ -93,8 +93,12 @@ const Home = () => {
       </div>
       {taskList.map((task) => {
         return (
-          <TaskBox key={task.name} onDeleteClick={() => handleDeleteTask(task)}>
-            <Link to="/detailedtask">{task.name}</Link>
+          <TaskBox
+            key={task.name}
+            expireDate={task.expireDate}
+            onDeleteClick={() => handleDeleteTask(task)}
+          >
+            <Link to={`/detailedtask/${task.name}`}>{task.name}</Link>
           </TaskBox>
         );
       })}

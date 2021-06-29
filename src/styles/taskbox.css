@@ -10,3 +10,16 @@
   display: flex;
   justify-content: flex-end;
 }
+
+.checked-button,
+.edit-button,
+.delete-button {
+  border: unset;
+  background-color: unset;
+  padding: 0 5px;
+}
+
+#taskbox.expired {
+  border-color: red;
+  background-color: #ffe3e3;
+}

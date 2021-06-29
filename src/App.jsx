@@ -8,7 +8,7 @@ const App = () => {
   return (
     <BrowserRouter>
       <Route path="/" exact component={Home} />
-      <Route path="/detailedtask" exact component={DetailedTask} />
+      <Route path="/detailedtask/:taskName" exact component={DetailedTask} />
     </BrowserRouter>
   );
 };
